@@ -2,7 +2,14 @@
   <div class="hello">
     {{ name }}
 
+    {{ btnState ? 'button is disabled' : 'button is active' }}
     <button v-on:click="changeName" v-bind:disabled="btnState"> ChangeName</button>
+
+    <div class="holder">
+      <ul>
+        <li v-for="data, index in skills" :key='index'>{{index}}.{{data.skill}}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -12,7 +19,11 @@ export default {
   data() {
     return {
       name: "Aoftion",
-      btnState: true
+      btnState: true,
+      skills: [
+        {"skill" : "Vue.js"},
+        {"skill" : "Frontend Developer"}
+      ]
     }
   }
 }
