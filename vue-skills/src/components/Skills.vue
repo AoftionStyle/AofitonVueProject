@@ -3,7 +3,7 @@
     {{ name }}
 
     {{ btnState ? 'button is disabled' : 'button is active' }}
-    <button v-on:click="changeName" v-bind:disabled="btnState"> ChangeName</button>
+    <button v-on:click="" v-bind:disabled="btnState"> ChangeName</button>
 
     <div class="holder">
       <ul>
@@ -14,7 +14,7 @@
       <p v-else> You habe less than or equal to 1 skill</p>
 
       <div v-bind:class="{ alert: showAlert, 'another-class': showClass }"></div>
-      <div v-bind:class="alertObject"></div>
+      <!-- <div v-bind:class="alertObject"></div> -->
     </div>
   </div>
 </template>
@@ -32,9 +32,9 @@ export default {
       ],
       showAlert: true,
       showClass: true,
-      alertObjet: {
-        alert: true
-      }
+      // alertObjet: {
+      //   //alert: true
+      // }
     }
   }
 }
