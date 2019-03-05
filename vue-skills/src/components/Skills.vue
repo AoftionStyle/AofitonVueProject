@@ -6,7 +6,8 @@
     <button v-on:click="clickMe" v-bind:disabled="btnState"> ChangeName</button>
     <br>
     <form @submit.prevent="addSkill">
-      <input type="text" placeholder="Enter a skill you have.." v-model="skill">
+      <input type="text" placeholder="Enter a skill you have.." v-model="skill" v-validate="'min:5'" name="skill">
+      <p class="alert" v-if="errors.has('skill')">{{ error.first('skill') }}</p>
 
       <input type="checkbox" id="checkbox" v-model="checked">
     </form> 
@@ -52,8 +53,15 @@ export default {
   },
   methods: {
     addSkill() {
-      this.skills.push({skill: this.skill})
-      this.skill = '';
+      this.$validator.validateAll().then((result) => {
+        if(result) {
+          this.skills.push({skill: this.skill})
+          this.skill = '';
+        } else {
+          console.log('Not valid')
+        }
+      });
+      
       console.log('This checkcbox value is: '+ this.checked);
     }
   }
