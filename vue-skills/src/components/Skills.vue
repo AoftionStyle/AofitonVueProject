@@ -3,9 +3,11 @@
     {{ name }}
 
     {{ btnState ? 'button is disabled' : 'button is active' }}
-    <button v-on:click="" v-bind:disabled="btnState"> ChangeName</button>
-
-    <input type="text" placeholder="Enter a skill you have.." v-model="skill">
+    <button v-on:click="clickMe" v-bind:disabled="btnState"> ChangeName</button>
+    <br>
+    <form @submit.prevent="addSkill">
+      <input type="text" placeholder="Enter a skill you have.." v-model="skill">
+    </form> 
 
     <div class="holder">
       <ul>
@@ -41,7 +43,14 @@ export default {
       },
       bgColor: "blue",
       bgWidth: "100%",
-      bgHeight: '30px'
+      bgHeight: '30px',
+      clickMe: "clickme!!",
+    }
+  },
+  methods: {
+    addSkill() {
+      this.skills.push({skill: this.skill})
+      this.skill = '';
     }
   }
 }
@@ -71,8 +80,14 @@ a {
 .another-class {
   border: 5px solid black;
 }
-
-
+input {
+  width: clac(100% - 40px);
+  border: 0;
+  padding: 20px;
+  font-size: 1.3em;
+  background-color: black;
+  color: gray;
+}
 </style>
 
 <style src="./Skills.css" scoped>
