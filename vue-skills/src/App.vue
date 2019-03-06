@@ -25,7 +25,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
@@ -40,7 +39,7 @@ body {
   display: grid;
   grid-template-rows: auto;
   justify-items: center;
-  aligh-items: center;
+  padding-top: 50px;
 }
 
 body, html {
@@ -50,5 +49,19 @@ body, html {
 
 #app {
   width: 50%;
+}
+
+nav {
+  padding: 20px 20px 20px 0;
+}
+
+nav a {
+  padding: 10px;
+  text-decoration: none;
+  background: #fff;
+  border-radius: 3px;
+  color: rgb(0, 110, 255);
+  font-weight: bold;
+  margin-right: 15px;
 }
 </style>
