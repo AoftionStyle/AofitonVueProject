@@ -8,9 +8,9 @@
         <input type="text" placeholder="Enter a skill you have.." 
         v-model="skill" v-validate="'min:5'" name="skill">
 
-        <p class="alert" v-if="errors.has('skill')">{{ errors.first('skill') }}</p>
-        <!-- <transition name="alert-in">
-        </transition> -->
+        <transition name="alert-in" enter-active-class="anited flipInx" leave-active-class="animated flipOutX">
+          <p class="alert" v-if="errors.has('skill')">{{ errors.first('skill') }}</p>
+        </transition>
       </form> 
 
       <ul>
@@ -44,19 +44,14 @@ export default {
   },
   methods: {
     addSkill() {
-      // this.$validator.validateAll().then((result) => {
-      //   if(result) {
-      //     this.skills.push({skill: this.skill})
-      //     this.skill = '';
-      //   } else {
-      //     console.log('Not valid')
-      //   }
-      // });
-      
-
-      this.skills.push({skill: this.skill})
-      this.skill = '';
-      console.log('This checkcbox value is: '+ this.checked);
+      this.$validator.validateAll().then((result) => {
+        if(result) {
+          this.skills.push({skill: this.skill})
+          this.skill = '';
+        } else {
+          console.log('Not valid')
+        }
+      });
     }
   }
 }
@@ -64,6 +59,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url('https://cdn.jsdelivr.net/npm/animate.css@3.7.0/animate.min.css');
+
 .holder {
   background: #fff;
 }
@@ -81,6 +78,7 @@ ul li {
   border-left: 5px solid #3EB3F6;
   margin-bottom: 2px;
   color: #3E5252;
+  text-align: left;
 }
 
 P {
@@ -108,5 +106,24 @@ input {
   display: inline-block;
   padding: 5px;
   margin-top: -20px;
+}
+
+.alert-in-enter-active {
+  animation: bounce-in .5s;
+}
+.alert-in-leave-active {
+  animation: bounce-in .5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transfomr: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
