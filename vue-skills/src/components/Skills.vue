@@ -5,10 +5,11 @@
       <!-- {{ btnState ? 'button is disabled' : 'button is active' }} -->
       <!-- <button v-on:click="clickMe" v-bind:disabled="btnState"> ChangeName</button> -->
       <form @submit.prevent="addSkill">
-        <input type="text" placeholder="Enter a skill you have.." v-model="skill">
+        <input type="text" placeholder="Enter a skill you have.." 
+        v-model="skill" v-validate="'min:5'" name="skill">
 
+        <p class="alert" v-if="errors.has('skill')">{{ errors.first('skill') }}</p>
         <!-- <transition name="alert-in">
-        <p class="alert" v-if="errors.has('skill')">{{ error.first('skill') }}</p>
         </transition> -->
       </form> 
 
